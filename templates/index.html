@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="/search_action" method="GET">
+    <input name="user_search" type="text" placeholder="Search ..." required = required>
+    <input class='search-button' type="Submit" value="Search">    
+</form>
+<form action="/add_notes">
+    <input type="Submit" value="Add">
+</form>
+<div class=container-notes>
+    {% for noteinfo in results %}
+    
+    <div id={{noteinfo[0]}} class="notes">
+        <h2>{{noteinfo[2]}}</h2>
+        <br>
+        <br>
+        <pre>{{noteinfo[3]}}</pre>
+        <a class="nt-lnk" href="/note?id={{noteinfo[0]}}" >view more</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

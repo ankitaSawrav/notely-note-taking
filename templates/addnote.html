@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add a new Note:</h1>
+    <div class="add-note-contr">
+        <form action="/add_notes_action" method='GET'>
+            Title:<input type="text" name="title" required>
+            <br>
+            <br>
+
+            <label class='label-desc-notes' for='note-content'>content</label>
+            <textarea class="desc-notes" name="notes-content" style=" height: 240px; width:380px; " required></textarea>
+
+
+            <input type="submit" value="Addnote">
+        </form>
+    </div>
+
+    {% endblock %}

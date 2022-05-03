@@ -1,0 +1,67 @@
+/*  */  
+body {
+    font-family: 'Open Sans', sans-serif;
+    max-width: 1000px;
+    margin: auto;
+}
+.container-notes {
+    padding-top: 10px;
+    display: grid;
+    flex-basis: 1;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+.notes {
+    border: 2px solid gray; 
+    border-bottom-right-radius: 10px;
+    background-color: beige;
+    display: inline-block;
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+    height : 300px;
+    width : 300px;
+    text-align: center;
+
+}
+
+pre {
+    font-family: 'Open Sans', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    text-align: left;
+    padding: 10px;
+
+}
+.nt-lnk {
+    text-align: left;
+}
+
+/* code for index page CSS */
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid gray;
+}
+h1 {
+    margin: 0;
+}
+.header>nav>a {
+
+    text-decoration: none !important;
+    font-size: x-large;
+    padding : 0 10px 0 10px;
+    line-height: 20px;
+}
+nav a:hover{ 
+    background:grey;
+    
+    border:2px solid gainsboro
+    
+}
+
+
