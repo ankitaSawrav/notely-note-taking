@@ -4,10 +4,12 @@
 <form action="/search_action" method="GET">
     <input name="user_search" type="text" placeholder="Search ..." required = required>
     <input class='search-button' type="Submit" value="Search">    
+     <!-- <a class="add-notes-btn" href="/">Add Notes</a>  -->
 </form>
 <form action="/add_notes">
     <input type="Submit" value="Add">
 </form>
+
 <div class=container-notes>
     {% for noteinfo in results %}
     
@@ -15,7 +17,7 @@
         <h2>{{noteinfo[2]}}</h2>
         <br>
         <br>
-        <pre>{{noteinfo[3]}}</pre>
+        <pre class="notes-search">{{noteinfo[3]}}</pre>
         <a class="nt-lnk" href="/note?id={{noteinfo[0]}}" >view more</a>
     </div>
     {% endfor %}

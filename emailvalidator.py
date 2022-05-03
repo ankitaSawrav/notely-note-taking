@@ -37,6 +37,12 @@ def isValidEmail(email):
         # print("Check :There is at least one character after the final .")
         return False
     return True
+
+
+# search text split by words
+def search_by_words(user_text): 
+    user_text_words_list =user_text.split(" ")
+    return user_text_words_list
             
         
             

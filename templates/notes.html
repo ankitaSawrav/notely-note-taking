@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- {{notes}} -->
+{{notes}}
 <div class="notes-content" id="{{notes[0][0]}}">
     <h1>{{notes[0][2]}}</h1>
     <pre>{{notes[0][3]}}</pre>
 </div>
+<!-- user_id:{{user_id}}-----notes_user_id:{{notes_user_id}} -->
+{%if user_id == notes_user_id %}
+<div class="">
+    <form class="edit-btn" action="/edit" method="POST">
+        <input type="button" class="btn" value="Edit Notes">
+    </form>
+</div>
+<div>
+    <form class="del-btn" action="/delete" method="POST">
+        <input type="button" class="btn" value="Delete Notes">
+    </form>
+</div>
+
+{% endif %}
 {% endblock %}

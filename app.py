@@ -26,11 +26,13 @@ def index():
 def search_action():
     user_search_text = request.args.get("user_search")
     print(user_search_text)
-    
-    
     parameter_db_search = "%"+user_search_text+"%"
     print(parameter_db_search)
-    conn = psycopg2.connect('dbname=project2')
+    # 
+    search_word_list = emailvalidator.search_by_words(user_search_text)
+    print (search_word_list)
+
+    conn = psycopg2.connect(DB_URL)
     cur = conn.cursor()
     cur.execute('SELECT * FROM notes WHERE title like %s  or notes_description like %s',[parameter_db_search,parameter_db_search]) # Query to check that the DB connected
     results = cur.fetchall()
@@ -88,7 +90,6 @@ def on_login_action():
             # setting session cookies
             session['user_id'] = user_id
             session['username'] = user_name
-
             return redirect('/')
         else:    
             return render_template('login.html',message = " Incorrect password !! ",username = session.get('username'))
@@ -103,7 +104,9 @@ def add_note():
 
 @app.route('/add_notes_action' ,methods=['GET'])
 def add_notes_action():
-    user_id = 1
+    user_id = session.get('user_id')
+    print (user_id)
+
     new_note_title = request.args.get("title")
     new_note_content = request.args.get("notes-content")
     print(new_note_title) 
@@ -116,10 +119,16 @@ def add_notes_action():
 @app.route('/note', methods=['GET'])
 def get_note_details():
     note_id = request.args.get('id')
-    print(note_id)
+    session_user_id =session.get('user_id')
+    print(session_user_id)
+   
+    
+
     note_details = database.sql_fetch('SELECT * FROM notes WHERE notes_id = %s', [note_id])
     print(note_details)
-    return render_template('notes.html',notes = note_details,username = session.get('username'))
+    notes_user_id = note_details[0][1]
+   
+    return render_template('notes.html',notes = note_details,username = session.get('username'),user_id=session_user_id,notes_user_id=notes_user_id)
 
 
 
