@@ -9,34 +9,40 @@ body {
     display: grid;
     flex-basis: 1;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
+    
 }
 .notes {
-    border: 2px solid gray; 
+    /* border: 1px solid gray;  */
     border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
     background-color: beige;
     display: inline-block;
+    padding:10px;
     /* white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; */
-    height : 300px;
-    width : 300px;
-    text-align: center;
-
+    height: 220px;
+    width: 235px;
 }
 
 pre.notes-search {
     font-family: 'Open Sans', sans-serif;
     white-space: nowrap;
     overflow: hidden;
-    /* text-overflow: ellipsis;  */
+    text-overflow: ellipsis; 
     text-align: left;
     padding: 10px;
 
 }
 .nt-lnk {
     text-align: left;
+    /* code to display link to right bottom */
+    /* position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px; */
 }
 
 /* code for index page CSS */
@@ -76,5 +82,13 @@ nav {
     padding-bottom: 5px;
 }
 
-
+.notes {
+    position: relative;
+}
+a.nt-lnk {
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
 
