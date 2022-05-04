@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{h1}}</h1> 
+<h2>TITLE ----{{title}}</h2>
+    <div class="note-contr">
+        <form action="/edit_notes_action" method='POST'>
+            <input type="text" name="note_id" value={{note_id}}>
+            <input type="text" name="title"  value ="{{title}}" size="30" maxLength="30">
+        
+            <br>
+            <br>
+            <!-- to auto populate data from database based on selected  note id  for edit-->
+            <label class='label-desc-notes' for='note-content'>content</label>
+            <textarea class="desc-notes" name="notes-content" style=" height: 240px; width:380px; " required>{{content}}</textarea>
+            
+
+            <input type="submit" value="Save">
+        </form>
+    </div>
+
+    {% endblock %}

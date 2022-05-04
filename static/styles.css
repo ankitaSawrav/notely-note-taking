@@ -30,7 +30,7 @@ pre.notes-search {
     font-family: 'Open Sans', sans-serif;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    /* text-overflow: ellipsis;  */
     text-align: left;
     padding: 10px;
 
@@ -56,12 +56,20 @@ h1 {
     font-size: x-large;
     padding : 0 10px 0 10px;
     line-height: 20px;
+    font-weight: bold;
 }
-nav a:hover{ 
+/* nav a:hover{ 
     background:grey;
     
     border:2px solid gainsboro
     
+} */
+
+header a {
+    text-decoration:none !important;
+    color: inherit;
+    color:black
 }
+
 
 

@@ -1,23 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{{notes}}
 <div class="notes-content" id="{{notes[0][0]}}">
     <h1>{{notes[0][2]}}</h1>
     <pre>{{notes[0][3]}}</pre>
 </div>
-<!-- user_id:{{user_id}}-----notes_user_id:{{notes_user_id}} -->
-{%if user_id == notes_user_id %}
-<div class="">
-    <form class="edit-btn" action="/edit" method="POST">
-        <input type="button" class="btn" value="Edit Notes">
-    </form>
+
+
+
+
+
+
+{%if user_id == notes_user_id  %}
+
+<div class="link-contr">
+   <a href="/editnote?id={{notes[0][0]}}" >Edit Notes</a>
+   <a href="/deletenote?id={{notes[0][0]}}" >Delete Notes</a>
 </div>
-<div>
-    <form class="del-btn" action="/delete" method="POST">
-        <input type="button" class="btn" value="Delete Notes">
-    </form>
+<div class="form-contr" id="edit">
+    <form action="/editnote" method="POST">
+        <input type="text" name="id" value={{notes[0][0]}}>
+        <input type="submit" value="Edit notes">    
+    </form>    
+</div>
+<div class="form-contr" id="delete">
+    <form action="/deletenote" method="POST">
+        <input type="text" name="id" value={{notes[0][0]}}>
+        <input type="submit" value="delete notes">
+    </form>   
 </div>
 
 {% endif %}
+
+
 {% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{%block content%}
+<div class="h1">
+    <form class="'delete-frm" action="/delete_notes_action" method='POST'>
+        Are you sure you want to delete "{{title}}"?
+        <input type="text" name="note_id" value={{note_id}}>
+        <input type="submit" value="Confirm">
+    </form>
+    
+
+
+</div>
+{% endblock %}

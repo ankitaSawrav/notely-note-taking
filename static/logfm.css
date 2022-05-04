@@ -6,7 +6,8 @@ form {
 }
 
 
-.login ,.signin {  
+
+.login ,.signin,.note-contr {  
     width: 500px;  
     height:auto;
     overflow: hidden;  
@@ -61,4 +62,35 @@ label {
 .error-message {
     color: crimson;
     font-size: 17px;
+}
+
+/* Search box */
+.search-frm {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.search-box {
+    width: 500px;
+    border: 2;
+    position: relative;
+    padding: 8px;
+    border-radius: 21px;
+    border: 19px;
+    border: 1px solid grey;
+    background-color: transparent;
+    color: rgba(0,0,0,.87);
+    margin: 35px;
+}
+input.search-button,.add-btn {
+    width: 150px;
+    height: 29px;
+    border: none;
+    border-radius: 6px;
+}
+.search-frm .add-notes-btn {
+    text-decoration: none;
+    color: inherit;
 }

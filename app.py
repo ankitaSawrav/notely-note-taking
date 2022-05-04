@@ -1,5 +1,8 @@
 
+
 from crypt import methods
+from pydoc import describe
+from unittest import result
 import bcrypt
 import psycopg2 
 from flask import Flask ,render_template,request,redirect,session
@@ -105,6 +108,7 @@ def add_note():
 @app.route('/add_notes_action' ,methods=['GET'])
 def add_notes_action():
     user_id = session.get('user_id')
+    
     print (user_id)
 
     new_note_title = request.args.get("title")
@@ -116,17 +120,69 @@ def add_notes_action():
     database.sql_write('INSERT INTO notes(user_id, title , notes_description ) VALUES (%s,%s, %s)', [user_id,new_note_title, new_note_content])
     return render_template('index.html',username = session.get('username'))
 
+# EDIT a note 
+
+@app.route('/editnote',methods=['GET','POST'])
+def edit_note():
+    note_id=request.form.get("id")
+    print(note_id)
+    search_results = database.sql_fetch('select * from notes where notes_id=%s',[note_id])
+    print(search_results)
+    title = search_results[0][2]
+    content = search_results[0][3]
+    
+    return render_template('editnote.html',username = session.get('username'),title= title, content = content, note_id=note_id)
+    
+
+@app.route('/edit_notes_action', methods=['POST'])
+def edit_notes_action():
+    note_id = request.form.get("note_id")
+    username = session.get('username')
+    title = request.form.get("title")
+    description = request.form.get("notes-content")
+    print(note_id)
+    print(username)
+    print(f'edit note page:{title}')
+    print(description)
+    
+    database.sql_write('UPDATE notes SET  title = %s ,notes_description= %s WHERE notes_id=%s',[title,description,note_id])
+    return redirect("/")
+
+# delete functionality:
+
+@app.route('/deletenote',methods=['GET','POST'])
+def delete_note():
+    note_id=request.form.get("id")
+    print(note_id)
+    search_results = database.sql_fetch('select * from notes where notes_id=%s',[note_id])
+    print(f'delete note page: {search_results}')
+    title = search_results[0][2]
+ 
+    return render_template('deletenote.html',username = session.get('username'), note_id = note_id,title=title )
+    
+
+@app.route('/delete_notes_action', methods=['POST'])
+def delete_notes_action():
+    note_id = request.form.get("note_id")
+    username = session.get('username')
+    print(note_id)
+    print(username)
+    database.sql_write('DELETE FROM notes WHERE notes_id=%s',[note_id])
+    return redirect("/")
+    
+   
+
+
 @app.route('/note', methods=['GET'])
 def get_note_details():
     note_id = request.args.get('id')
     session_user_id =session.get('user_id')
     print(session_user_id)
-   
-    
-
     note_details = database.sql_fetch('SELECT * FROM notes WHERE notes_id = %s', [note_id])
     print(note_details)
     notes_user_id = note_details[0][1]
+    if notes_user_id is None:
+        notes_user_id='Guest'
    
     return render_template('notes.html',notes = note_details,username = session.get('username'),user_id=session_user_id,notes_user_id=notes_user_id)
 
