@@ -45,12 +45,12 @@ def search_action():
         return render_template('index.html',results ='there are no results based on your search',username = session.get('username'))
     else:   
         return render_template('index.html', results = results,username = session.get('username'))
-@app.route('/signin')
-def display_signin():
-    return render_template('signin.html',username = session.get('username')) 
+@app.route('/signup')
+def display_signup():
+    return render_template('signup.html',username = session.get('username')) 
 
-@app.route('/signin_action',methods=['POST'])
-def signin():
+@app.route('/signup_action',methods=['POST'])
+def signup():
     username = request.form.get("name")
     email = request.form.get('email')
     password = request.form.get('password')
@@ -65,7 +65,7 @@ def signin():
     else:
         print('in else loop')
         print(emailvalidator.isValidEmail(email))
-        return render_template('signin.html',result = 'Please enter a valid email address example@hit.com',username = session.get('username'))
+        return render_template('signup.html',result = 'Please enter a valid email address example@hit.com',username = session.get('username'))
    
 @app.route('/login')    
 def login():

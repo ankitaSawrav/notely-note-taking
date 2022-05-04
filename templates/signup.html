@@ -2,13 +2,13 @@
 {% block content %}
 
 <article class="Signin-pg">
-    <h1>Signin Form</h1>
+    <h1>SignUp Form</h1>
 
-    <div class="signin">
-        <div class="signin-error">
+    <div class="signup">
+        <div class="signup-error">
             {{result}}
         </div>
-        <form id='Signin' action="/signin_action" method="POST">
+        <form id='Signup' action="/signup_action" method="POST">
             <label><b>name:</b></label>
             <input id ='name' name="name" type="text" required="required">
             <br><br>

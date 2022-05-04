@@ -44,16 +44,17 @@ pre.notes-search {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     border-bottom: 2px solid gray;
 }
 h1 {
     margin: 0;
+
 }
 .header>nav>a {
 
     text-decoration: none !important;
-    font-size: x-large;
+    
     padding : 0 10px 0 10px;
     line-height: 20px;
     font-weight: bold;
@@ -68,7 +69,11 @@ h1 {
 header a {
     text-decoration:none !important;
     color: inherit;
-    color:black
+    color:black;
+    font-size: larger;
+}
+nav {
+    padding-bottom: 5px;
 }
 
 
