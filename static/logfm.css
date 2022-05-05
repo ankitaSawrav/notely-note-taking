@@ -7,7 +7,7 @@ form {
 
 
 
-.login ,.signup,.note-contr {  
+.login ,.signup,.note-contr,.add-note-contr {  
     width: 500px;  
     height:auto;
     overflow: hidden;  
@@ -85,12 +85,12 @@ label {
     color: rgba(0,0,0,.87);
     margin: 35px;
 }
-input.search-button,.add-btn, .edit-btn ,.del-btn,.del-btn, .edit-note-svBtn{
+input.search-button,.add-btn, .edit-btn ,.del-btn,.del-btn, .edit-note-svBtn, .add-note-btn{
     width: 150px;
     height: 29px;
     border: none;
     border-radius: 6px;
-    font-family: ;
+
 }
 .search-frm .add-notes-btn {
     text-decoration: none;
@@ -105,7 +105,7 @@ section.update-note {
 }
 
 /* edit note fom */
-.edit-note-t {
+.edit-note-t,.add-note-title {
     width: 300px;
     height: 30px;
     border-radius: 3px;

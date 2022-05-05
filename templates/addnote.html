@@ -3,15 +3,24 @@
 <h2>Add a new Note:</h1>
     <div class="add-note-contr">
         <form action="/add_notes_action" method='GET'>
-            Title:<input type="text" name="title" required>
-            <br>
-            <br>
+            <div>
+                <label class='label-notes-title' for='note_id'>Title</label>
+                
+            </div>
+            <div>
+                <input class="add-note-title" type="text" name="title" required>
+            </div>
+            <div>
+                <label class='label-desc-notes' for='note-content'>content</label>
+            </div>
+            <div>
+                <textarea class="desc-notes" name="notes-content" style=" height: 240px; width:380px; " required></textarea>
+            </div>
             
-            <label class='label-desc-notes' for='note-content'>content</label>
-            <textarea class="desc-notes" name="notes-content" style=" height: 240px; width:380px; " required></textarea>
-
-
-            <input type="submit" value="Addnote">
+            <div>
+                <input class="add-note-btn"type="submit" value="Addnote">
+            </div>
+            
         </form>
     </div>
 
