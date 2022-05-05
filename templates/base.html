@@ -11,6 +11,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script defer src="/static/index.js"></script>
    
 </head>
 <body>
@@ -22,11 +23,10 @@
             <!-- <a href="/">Home</a> -->
             <!-- <a href="/about">About</a> -->
             {% if username == None %}
-            <a >Hi Guest </a>
             <a href="/signup">Sign Up</a>
             <a href="/login">Login</a>
             {% else %}
-            <a> Hi,{{username}}</a> 
+            <a class="user" u-id="{{user_id}}"> Hi, {{username}}</a> 
             <a href="/logout">logout</a> 
             {% endif %}
         </nav>

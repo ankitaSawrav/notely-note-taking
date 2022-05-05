@@ -8,15 +8,16 @@
             {{message}}
         </div>
         <form id='login' action="/login_action" method="POST">
-            <label><b>Email:</b></label>
+            <div>
             <input id='email' name="email" type="text" size="30" maxLength="30" required
                 placeholder="Email:username@best.com">
-
-            <br>
-            <br>
-            <label><b>Password:</b></label>
-            <input id="pwd" name="password" type="password" required="required" placeholder="Password:"><br> <br>
-            <input id='submit' type="Submit" value="SIGN IN">
+            </div>
+            <div>
+            <input id="pwd" name="password" type="password" required="required" placeholder="Password"><br> <br>
+            </div>
+            <div>
+            <input id='submit' type="Submit" value="LOG IN">
+            </div>
         </form>
     </div>
 </article>

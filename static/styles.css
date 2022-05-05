@@ -24,7 +24,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis; */
     height: 220px;
-    width: 235px;
+    width: 225px;
 }
 
 pre.notes-search {
@@ -90,5 +90,76 @@ a.nt-lnk {
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+/* 
+login form  */
+div {
+    margin-bottom: 10px;
+  }
+  label {
+    display: inline-block;
+    width: 150px;
+  }
+
+/* display notes page CSS */
+pre {
+    font-family: 'Open Sans', sans-serif;
+}
+.display-notes{
+    background: rgb(35 89 143 / 10%);
+    width: 500px;
+    height: auto;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 12px;
+}
+.display-notes pre {
+    padding: 10px;
+    white-space: pre-wrap;
+}
+.display-notes h1,.h1{
+    text-align: left;
+    padding: 10px;
+}
+
+.show-my-notes {
+    font-family: ui-rounded;
+    font-size: smaller;
+    display: flex; 
+    justify-content: flex-end;
+}
+/* from :https://www.youtube.com/watch?v=BQSNBa3gZJU&ab_channel=OnlineTutorials */
+input[type="checkbox"]{
+    width: 20px;
+    height: 14px;
+    appearance: none;
+    background:#c6c6c6; 
+    outline : none;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+    /* transition: .5s; */
+}
+input:checked[type="checkbox"]{
+    background :#03a9f4;
+}
+input:checked[type="checkbox"]{
+    background :#03a9f4;
+}
+input[type="checkbox"]:before{
+    content: '';
+    
+    width:10px;
+    height:10px;
+    border-radius:20px;
+    top:0;
+    left:0;
+    background: #fff;
+    transform:scale(1.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    transition:.5s;
+    
+
 }
 

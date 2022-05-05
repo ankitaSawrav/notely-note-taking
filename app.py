@@ -1,6 +1,7 @@
 
 
 from crypt import methods
+import json
 from pydoc import describe
 from unittest import result
 import bcrypt
@@ -22,8 +23,7 @@ def index():
     user_id = session.get('user_id')
     username = session.get('username')
     print(f'this is {user_id} & {username}')
-    return render_template('index.html', username = session.get('username') )
-
+    return render_template('index.html', username = session.get('username'),user_id = session.get('user_id') )
 
 @app.route('/search_action')
 def search_action():
@@ -41,10 +41,22 @@ def search_action():
     results = cur.fetchall()
     print(results)
     conn.close()
+    # converting results into a dictionary:
+    notes_dic = []
+    for row in results:
+        note = {
+            'notes_id': row[0],
+            'user_id': row[1],
+            'title': row[2],
+            'notes_description': row[3]
+        }
+        notes_dic.append(note)
+    print(notes_dic)
+    print(json.dumps(notes_dic, indent=4))
     if  results == None:
-        return render_template('index.html',results ='there are no results based on your search',username = session.get('username'))
+        return render_template('index.html',results ='there are no results based on your search',username = session.get('username'),user_id = session.get('user_id'))
     else:   
-        return render_template('index.html', results = results,username = session.get('username'))
+        return render_template('index.html', results = results,username = session.get('username'),notes_dic = json.dumps(notes_dic, indent=4),user_id = session.get('user_id'))
 @app.route('/signup')
 def display_signup():
     return render_template('signup.html',username = session.get('username')) 

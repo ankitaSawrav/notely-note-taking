@@ -1,35 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="notes-content" id="{{notes[0][0]}}">
+<div class="display-notes" id="{{notes[0][0]}}">
     <h1>{{notes[0][2]}}</h1>
     <pre>{{notes[0][3]}}</pre>
 </div>
 
-
-
-
-
-
 {%if user_id == notes_user_id  %}
 
-<div class="link-contr">
+<!-- <div class="link-contr">
    <a href="/editnote?id={{notes[0][0]}}" >Edit Notes</a>
    <a href="/deletenote?id={{notes[0][0]}}" >Delete Notes</a>
-</div>
-<div class="form-contr" id="edit">
-    <form action="/editnote" method="POST">
-        <input type="text" name="id" value={{notes[0][0]}}>
-        <input type="submit" value="Edit notes">    
-    </form>    
-</div>
-<div class="form-contr" id="delete">
-    <form action="/deletenote" method="POST">
-        <input type="text" name="id" value={{notes[0][0]}}>
-        <input type="submit" value="delete notes">
-    </form>   
-</div>
-
+</div> -->
+<section class ="update-note">
+    <div class="form-contr" id="edit">
+        <form action="/editnote" method="POST">
+            <input type="hidden" name="id" type="text" value={{notes[0][0]}}>
+            <input class="edit-btn" type="submit" value="Edit notes">
+        </form>
+    </div>
+    <div class="form-contr" id="delete">
+        <form action="/deletenote" method="POST">
+            <input type="hidden" name="id" type="text" value={{notes[0][0]}}>
+            <input class="del-btn" type="submit" value="delete notes">
+        </form>
+    </div>
+</section>
 {% endif %}
 
 

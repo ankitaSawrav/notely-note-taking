@@ -85,13 +85,34 @@ label {
     color: rgba(0,0,0,.87);
     margin: 35px;
 }
-input.search-button,.add-btn {
+input.search-button,.add-btn, .edit-btn ,.del-btn,.del-btn, .edit-note-svBtn{
     width: 150px;
     height: 29px;
     border: none;
     border-radius: 6px;
+    font-family: ;
 }
 .search-frm .add-notes-btn {
     text-decoration: none;
     color: inherit;
+}
+section.update-note {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+
+}
+
+/* edit note fom */
+.edit-note-t {
+    width: 300px;
+    height: 30px;
+    border-radius: 3px;
+    padding-left: 8px;
+    border: 1px;
+}
+label.label-desc-notes{
+    height: 30px;
+    font-family: 'Open Sans', sans-serif
 }

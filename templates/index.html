@@ -1,19 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<section>
+    <form></form>
+</section>
     <form class="search-frm" action="/search_action" method="GET">
         <input class="search-box" name="user_search" type="text" placeholder="Search ..." required=required>
         <div>
         <input class='search-button' type="Submit" value="Search Notes">
         <button class="add-btn" ><a class="add-notes-btn"  type="button" href="/add_notes">Add Notes</a></button>
-    </div> 
+        </div> 
     </form>
+
+    <!-- check boc -->
+
+    {% if results and  username %}
     
+    <p class="show-my-notes">Show my notes only 
+        <input id="check" type="checkbox" onclick="ShowOnlyMyNotes()">
+    </p>
+    {% endif %}
 
 <div class=container-notes>
     {% for noteinfo in results %}
 
-    <div id={{noteinfo[0]}} class="notes">
+    <div id={{noteinfo[0]}} class="notes" data-uid="{{noteinfo[1]}}">
         <h2>{{noteinfo[2]}}</h2>
         <pre class="notes-search">{{noteinfo[3]}}</pre>
         <a class="nt-lnk" href="/note?id={{noteinfo[0]}}">view more</a>
@@ -21,3 +31,5 @@
     {% endfor %}
 </div>
 {% endblock %}
+
+
