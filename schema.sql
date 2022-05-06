@@ -13,5 +13,7 @@ CREATE TABLE notes (
     notes_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(user_id),
     title varchar(50),
-    notes_description TEXT 
+    notes_description TEXT,
+    likes INTEGER,
+    dislikes INTEGER
 );

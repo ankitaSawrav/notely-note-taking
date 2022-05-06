@@ -1,5 +1,4 @@
 
-
 from crypt import methods
 import json
 from pydoc import describe
@@ -39,27 +38,21 @@ def search_action():
     cur = conn.cursor()
     cur.execute('SELECT * FROM notes WHERE title like %s  or notes_description like %s',[parameter_db_search,parameter_db_search]) # Query to check that the DB connected
     results = cur.fetchall()
-    print(results)
+    # print(results)
     conn.close()
     # converting results into a dictionary:
-    notes_dic = []
-    for row in results:
-        note = {
-            'notes_id': row[0],
-            'user_id': row[1],
-            'title': row[2],
-            'notes_description': row[3]
-        }
-        notes_dic.append(note)
-    print(notes_dic)
-    print(json.dumps(notes_dic, indent=4))
+    notes_dic = convert_db_result_to_dic(results)
+    
     if  results == None:
-        return render_template('index.html',results ='there are no results based on your search',username = session.get('username'),user_id = session.get('user_id'))
+        return render_template('index.html',errorMsg ='There are no results based on your search',username = session.get('username'), notes_dic = None, user_id = session.get('user_id'))
     else:   
-        return render_template('index.html', results = results,username = session.get('username'),notes_dic = json.dumps(notes_dic, indent=4),user_id = session.get('user_id'))
+        return render_template('index.html',errorMsg='', username = session.get('username'), notes_dic = notes_dic, user_id = session.get('user_id'))
+
+
 @app.route('/signup')
 def display_signup():
     return render_template('signup.html',username = session.get('username')) 
+
 
 @app.route('/signup_action',methods=['POST'])
 def signup():
@@ -78,11 +71,12 @@ def signup():
         print('in else loop')
         print(emailvalidator.isValidEmail(email))
         return render_template('signup.html',result = 'Please enter a valid email address example@hit.com',username = session.get('username'))
-   
+
+
 @app.route('/login')    
-def login():
-    
+def login():   
     return render_template('login.html',username = session.get('username'))
+
 
 @app.route('/login_action' ,methods=['POST'])
 def on_login_action():
@@ -190,16 +184,16 @@ def get_note_details():
     note_id = request.args.get('id')
     session_user_id =session.get('user_id')
     print(session_user_id)
-    note_details = database.sql_fetch('SELECT * FROM notes WHERE notes_id = %s', [note_id])
+    results = database.sql_fetch('SELECT * FROM notes WHERE notes_id = %s', [note_id])
+    
+    note_details= convert_db_result_to_dic(results)
     print(note_details)
-    notes_user_id = note_details[0][1]
-    if notes_user_id is None:
-        notes_user_id='Guest'
+    for note in note_details:
+        notes_user_id = note['user_id']
+        if notes_user_id is None:
+            notes_user_id='Guest'
    
-    return render_template('notes.html',notes = note_details,username = session.get('username'),user_id=session_user_id,notes_user_id=notes_user_id)
-
-
-
+        return render_template('notes.html',notes = note,username = session.get('username'),user_id=session_user_id,notes_user_id=notes_user_id)
 
 
 @app.route('/logout')
@@ -207,6 +201,20 @@ def logout():
   session.clear()
   return redirect('/')
 
+
+def convert_db_result_to_dic(results):
+    dic = []
+    for row in results:
+        note = {
+            'notes_id': row[0],
+            'user_id': row[1],
+            'title': row[2],
+            'notes_description': row[3]
+        }
+        dic.append(note)
+    print(dic)
+    print(json.dumps(dic, indent=4))
+    return dic
 
 
 

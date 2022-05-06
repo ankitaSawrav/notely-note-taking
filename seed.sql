@@ -12,20 +12,10 @@ INSERT INTO users (user_name, user_email , password_hash) VAlUES ('ankita','anki
 -- -- -notes_id SERIAL PRIMARY KEY,user_id INTEGER REFERENCES users(user_id),title varchar(50),notes_description TEXT 
 -- INSERT INTO users (user_id, user_email , password_hash) VAlUES ('Bob','bob@gmail.com', 'hello');
 
-insert into notes(user_id, title , notes_description ) VAlUES (1,'test data' , 'adding test data');
-insert into notes(user_id,title,notes_description) VAlUES (2,'test new data', 'adding sally data');
-insert into notes(user_id,title,notes_description) VAlUES (2,'test 3rd set data ', 'adding sally second data');
-insert into notes(user_id,title,notes_description) VAlUES (3,'steps to start python app ', 'python -m venv venv source venv/bin/activate pip install Flask pip install requests');
-insert into notes(user_id,title,notes_description) VAlUES (3,'git commands ', 'GIT:
-When the local branch is behind upstream by x commits
-git remote -v		
-git remote add upstream <ssh url for the upstream repo>
-git pull upstream main
-		this might say that You have divergent branches and need to specify how to reconcile them. It will give hints.
-git pull upstream main --no-rebase
-	pull from up stream to local repo
-git push
-	push to origin repo from local to bring the three repo in sync');
+insert into notes(user_id, title , notes_description,likes,dislikes) VAlUES (1,'test data' , 'adding test data',1,4);
+insert into notes(user_id,title,notes_description,likes,dislikes) VAlUES (2,'test new data', 'adding sally data',8,2);
+insert into notes(user_id,title,notes_description,likes,dislikes) VAlUES (2,'test 3rd set data ', 'adding sally second data',0,1);
+insert into notes(user_id,title,notes_description,likes,dislikes) VAlUES (3,'steps to start python app ', 'python -m venv venv source venv/bin/activate pip install Flask pip install requests',3,0);
 
 
 

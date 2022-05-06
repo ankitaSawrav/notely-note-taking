@@ -3,33 +3,43 @@
 <section>
     <form></form>
 </section>
-    <form class="search-frm" action="/search_action" method="GET">
-        <input class="search-box" name="user_search" type="text" placeholder="Search ..." required=required>
-        <div>
+<form class="search-frm" action="/search_action" method="GET">
+    <input class="search-box" name="user_search" type="text" placeholder="Search ..." required=required>
+    <div>
         <input class='search-button' type="Submit" value="Search Notes">
-        <button class="add-btn" ><a class="add-notes-btn"  type="button" href="/add_notes">Add Notes</a></button>
-        </div> 
-    </form>
+        <button class="add-btn"><a class="add-notes-btn" type="button" href="/add_notes">Add Notes</a></button>
+    </div>
+</form>
 
-    <!-- check boc -->
+<!-- check boc -->
+<!-- {% if notes_dic  %} -->
 
-    {% if results and  username %}
-    
-    <p class="show-my-notes">Show my notes only 
-        <input id="check" type="checkbox" onclick="ShowOnlyMyNotes()">
-    </p>
-    {% endif %}
+
+{% if notes_dic and  username %}
+
+<p class="show-my-notes">Show my notes only
+    <input id="check" type="checkbox" onclick="ShowOnlyMyNotes()">
+</p>
+{% endif %}
 
 <div class=container-notes>
-    {% for noteinfo in results %}
+    {% if errorMsg == ''%}
+        {% for noteinfo in notes_dic %}
 
-    <div id={{noteinfo[0]}} class="notes" data-uid="{{noteinfo[1]}}">
-        <h2>{{noteinfo[2]}}</h2>
-        <pre class="notes-search">{{noteinfo[3]}}</pre>
-        <a class="nt-lnk" href="/note?id={{noteinfo[0]}}">view more</a>
-    </div>
-    {% endfor %}
+
+        <div id="{{noteinfo['note_id']}}" class="notes" data-uid="{{noteinfo['user_id']}}">
+            <h2>{{noteinfo['title']}}</h2>
+            <!-- <pre class="note-search">{{noteinfo['notes_description']}}</pre> -->
+            <pre class="notes-search">{{noteinfo['notes_description']}}</pre>
+            <a class="nt-lnk" href="/note?id={{noteinfo['notes_id']}}">view more</a>
+        </div>
+        {% endfor %}
+    {%else%}
+    <h2>{{errorMsg}}</h2>
+    {%endif%}
 </div>
+<!-- {% else %}
+<p>There are no results based on your search</p>
+{% endif %} -->
+
 {% endblock %}
-
-
