@@ -137,6 +137,7 @@ def edit_note():
     title = search_results[0][2]
     content = search_results[0][3]
     
+    
     return render_template('editnote.html',username = session.get('username'),title= title, content = content, note_id=note_id)
     
 
@@ -203,13 +204,16 @@ def logout():
 
 
 def convert_db_result_to_dic(results):
+    print(results)
     dic = []
     for row in results:
         note = {
             'notes_id': row[0],
             'user_id': row[1],
             'title': row[2],
-            'notes_description': row[3]
+            'notes_description': row[3],
+            'likes': row[4],
+            'dislikes': row[5]
         }
         dic.append(note)
     print(dic)

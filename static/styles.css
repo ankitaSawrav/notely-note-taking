@@ -168,3 +168,10 @@ input:checked[type="checkbox"]:before{
 h2 {
     text-align:left;
 }
+ .like-img, .dis-img {
+    height: 21px;
+    width: 21px;
+ }
+ .like-dislike {
+    display: inline-flex;
+ }

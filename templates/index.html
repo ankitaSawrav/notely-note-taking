@@ -31,7 +31,21 @@
             <h2>{{noteinfo['title']}}</h2>
             <!-- <pre class="note-search">{{noteinfo['notes_description']}}</pre> -->
             <pre class="notes-search">{{noteinfo['notes_description']}}</pre>
+        
+            <!-- {%if noteinfo['likes']%}
+            <span class="like-dislike">
+                
+            <p><img class="like-img" src="static/images/like.png">{{noteinfo['likes']}}</p>
+            {% endif %}
+            {% if noteinfo['dislikes'] %}
+                
+            <p><img class="dis-img" src="static/images/dislike.png">{{noteinfo['dislikes']}}</p>
+            </span>
+            {% endif %} -->
+            
+
             <a class="nt-lnk" href="/note?id={{noteinfo['notes_id']}}">view more</a>
+            
         </div>
         {% endfor %}
     {%else%}
