@@ -36,7 +36,7 @@ def search_action():
 
     conn = psycopg2.connect(DB_URL)
     cur = conn.cursor()
-    cur.execute('SELECT * FROM notes WHERE title like %s  or notes_description like %s',[parameter_db_search,parameter_db_search]) # Query to check that the DB connected
+    cur.execute('SELECT * FROM notes WHERE title like %s  or notes_description like %s ORDER BY likes DESC',[parameter_db_search,parameter_db_search]) # Query to check that the DB connected
     results = cur.fetchall()
     # print(results)
     conn.close()
@@ -120,10 +120,12 @@ def add_notes_action():
     new_note_title = request.args.get("title")
     new_note_content = request.args.get("notes-content")
     print(new_note_title) 
-    print(new_note_content) 
+    print(new_note_content)
+    likes = 0
+    dislikes = 0
     # insert into notes(user_id, title , notes_description ) VAlUES (1,'test data' , 'adding test data');
 
-    database.sql_write('INSERT INTO notes(user_id, title , notes_description ) VALUES (%s,%s, %s)', [user_id,new_note_title, new_note_content])
+    database.sql_write('INSERT INTO notes(user_id, title , notes_description,likes,dislikes ) VALUES (%s,%s, %s,%s,%s)', [user_id,new_note_title, new_note_content,likes,dislikes])
     return render_template('index.html',username = session.get('username'))
 
 # EDIT a note 
@@ -196,6 +198,33 @@ def get_note_details():
    
         return render_template('notes.html',notes = note,username = session.get('username'),user_id=session_user_id,notes_user_id=notes_user_id)
 
+@app.route('/like-dislike')
+def like_dislike_action():
+    id = request.args.get("id")
+    value = request.args.get("value")
+    print(id)
+    print(value)
+    # fetch note data by noteid
+    conn = psycopg2.connect(DB_URL)
+    cur = conn.cursor()
+    if value == 'likes':
+        print ('likes')
+        cur.execute('Select likes from notes where notes_id=%s', [id])
+        result = cur.fetchone()
+        lcount=result[0] + 1
+        print(lcount)
+        
+        database.sql_write('UPDATE notes SET likes=%s where notes_id=%s', [lcount,id])
+        return redirect("/")
+    else:
+        cur.execute('Select dislikes from notes where notes_id=%s', [id])
+        result = cur.fetchone()
+        dcount=result[0] + 1
+        print(dcount)
+        database.sql_write('UPDATE notes SET dislikes=%s where notes_id=%s', [dcount,id])
+        return redirect("/")
+    
+
 
 @app.route('/logout')
 def logout():
@@ -219,6 +248,7 @@ def convert_db_result_to_dic(results):
     print(dic)
     print(json.dumps(dic, indent=4))
     return dic
+
 
 
 

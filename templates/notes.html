@@ -4,6 +4,16 @@
 <div class="display-notes" id="{{notes['notes_id']}}">
     <h1>{{notes['title']}}</h1>
     <pre>{{notes['notes_description' ]}}</pre>
+
+    <span class="like-dislike">
+        
+        <p><a class="like-dislike" href="/like-dislike?id={{notes['notes_id']}}&value=likes"><img class="like-img" src="static/images/like.png">{{notes['likes']}}</a></p>
+        
+            
+        <p><a class="like-dislike" href="/like-dislike?id={{notes['notes_id']}}&value=dislikes"><img class="dis-img" src="static/images/dislike.png">{{notes['dislikes']}}</a></p>
+       
+    </span>
+    
 </div>
 
 {%if user_id == notes_user_id  %}

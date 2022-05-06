@@ -173,5 +173,9 @@ h2 {
     width: 21px;
  }
  .like-dislike {
-    display: inline-flex;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    /* padding: 10px; */
+    margin-right: 10px;
  }
