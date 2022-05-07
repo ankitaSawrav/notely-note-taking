@@ -4,7 +4,7 @@ _____
 
 Notely
 Web application that will enable users to make notes, search through them and more importantly, notes made by one would be available to others too.
-
+[Search Page](https://github.com/ankitaSawrav/project2/issues/1#issue-1228477742)
 
 ___
 
